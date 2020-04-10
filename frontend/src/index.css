@@ -1,0 +1,138 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+.Registration, .Login {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.fields {
+	margin: 10px;
+}
+.buttons button {
+	margin: 10px;
+}
+.message {
+	padding: 5px;
+}
+.error {
+	border: solid #ec5555 2px;
+}
+
+.logo {
+	height: 50px;
+}
+
+.navbar-text {
+	color: white !important;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
+
+.header {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: orange;
+}
+
+.nav-item.nav-link {
+	margin-right: 30px;
+	margin-left: 30px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.jumbotron {
+	margin-top: 100px;
+	background-color: white !important;
+	width: 50%;
+	border: black;
+	border-style: solid;
+	border-bottom-color: orange;
+	border-right-color: orange;
+}
+
+label {
+	font-size: 20px;
+	font-weight: initial !important;
+}
+
+form {
+	text-align: left;
+}
+h2 {
+	font-size: 30px !important;
+	font-weight: bold !important;
+}
+
+.form-group {
+	padding-top: 15px;
+}
+
+.btn-primary {
+	background-color: orange !important;
+	width: 150px;
+	border-radius: 1000px !important;
+	color: black !important;
+	border-color: orange !important;
+}
+
+.btn-primary:hover {
+	color: white !important;
+	background-color: black !important;
+	border-color: black !important;
+}
+
+hr {
+	border-top-color: black !important;
+	width: 75%;
+}
+
+.change-color {
+	color: orange;
+}
+ .card {
+ 	margin: 15px;
+ 	border-top-color: black !important;
+ 	border-left-color: black !important;
+ 	border-bottom-color: orange !important;
+ 	border-right-color: orange !important;
+ }
+
+ .show {
+ 	margin-top: 30px;
+ 	margin-bottom: 20px;
+ }
+
+ .card-text {
+ 	font-size: 16px;
+ }
+
+ .media {
+ 	border-style: solid;
+ 	border-bottom-color: orange;
+	border-right-color: orange;
+	padding: 20px;
+	font-size: 16px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+ }
+
+ h3 {
+ 	font-size: 25px !important;
+ }
