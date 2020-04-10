@@ -1,0 +1,60 @@
+{
+  "name": "coding-exercise",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.9.8",
+    "@material-ui/icons": "^4.5.1",
+    "@material-ui/styles": "^4.9.6",
+    "axios": "^0.18.1",
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^3.4.1",
+    "classnames": "^2.2.6",
+    "cors": "^2.8.5",
+    "d3": "^5.15.0",
+    "express": "4.16.4",
+    "google-map-react": "^1.1.5",
+    "google-maps-react": "^2.0.2",
+    "leaflet": "^1.6.0",
+    "leaflet-geosearch": "^2.7.0",
+    "leaflet-offline": "^1.1.0",
+    "leaflet.markercluster": "^1.4.1",
+    "localforage": "^1.7.3",
+    "lodash": "^4.17.15",
+    "material-ui": "^0.20.2",
+    "mdbreact": "^4.25.5",
+    "mongoose": "^5.8.3",
+    "nodemon": "^2.0.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-d3-graph": "^2.4.1",
+    "react-dom": "16.7.0",
+    "react-leaflet": "^2.4.0",
+    "react-leaflet-fullscreen": "^1.0.1",
+    "react-leaflet-markercluster": "^2.0.0-rc3",
+    "react-map-gl": "^5.2.0",
+    "react-router-dom": "4.3.1",
+    "react-scripts": "^3.4.0",
+    "react-search": "^2.1.1",
+    "react-toastify": "^5.5.0",
+    "reactstrap": "^8.4.1",
+    "recharts": "^2.0.0-beta.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
