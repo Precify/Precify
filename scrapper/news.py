@@ -24,6 +24,8 @@ from selenium import webdriver
 
 import sys
 
+import http.client
+
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -37,12 +39,22 @@ keywords = ["corona", "coronavirus", "lockdown", "covid-19", "covid19", "masks",
 
 apikey = "c8c54678d99e43d9b11a09d74e8dfa51"
 
+def connection(conn, link, author, source, text) :
+    headers = {'Content-type': 'application/json'}
+    data = {'url': str(link), 'author' : str(author), 'source' : str(source), 'text' : str(text)}
+    json_data = json.dumps(data)
+    conn.request('POST', '/addPost', json_data, headers)
+    response = conn.getresponse()
+    print(response.read().decode())
+
 def extract_news(covid_links, filename) :
     #loc_ = loc.lower()
     title = []
     content = []
     url = []
     authors = []
+    limit = 0
+    conn = http.client.HTTPSConnection('5182c18f.ngrok.io')
     for link in covid_links :
         try :
             article = Article(link)
@@ -53,6 +65,15 @@ def extract_news(covid_links, filename) :
             content.append(article.summary)
             url.append(link)
             authors.append(article.authors)
+            if len(article.authors) != 0 :
+                author = article.authors
+            else :
+                author = ""
+            connection(conn, link, author, article.source_url, article.summary)
+            limit = limit + 1
+            if(limit == 20):
+                sleep(61)
+                limit = 0
             #print(article.title)
             #print(article.summary)
             #print("")
@@ -298,21 +319,28 @@ def statewise(loc) :
 def main() :
     if(sys.argv[1] == "all") :
         articles = allNews()
-        #for article in articles:
+        conn = http.client.HTTPSConnection('5182c18f.ngrok.io')
+        limit = 0
+        for article in articles:
+            connection(conn, "", "", "", article)
+            limit = limit + 1
+            if(limit == 20) :
+                sleep(61)
+                limit = 0
             #print(article)
             #print("")
             #break
          #convert set of strings into json
         data = dict()
         data['articles'] = articles
-        with open("all.json", 'w') as fh:
+        with open("./data/all.json", 'w') as fh:
             fh.write(json.dumps(data))
     elif(sys.argv[1] == "statewise") :
         covid_links = statewise(sys.argv[2])
-        extract_news(covid_links, str(sys.argv[2]) + ".json")
+        extract_news(covid_links, "./data/" + str(sys.argv[2]) + ".json")
     elif(sys.argv[1] == "citywise") :
         covid_links = citywise(sys.argv[2])
-        extract_news(covid_links, str(sys.argv[2]) + ".json")
+        extract_news(covid_links, "./data/" + str(sys.argv[2]) + ".json")
     #elif(sys.argv[1] == "regionwise") :
         #covid_links = regionwise()
         #data = extract_news(covid_links, sys_argv[2])
