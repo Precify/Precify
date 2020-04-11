@@ -37,7 +37,7 @@ keywords = ["corona", "coronavirus", "lockdown", "covid-19", "covid19", "masks",
 
 apikey = "c8c54678d99e43d9b11a09d74e8dfa51"
 
-def extract_news(covid_links) :
+def extract_news(covid_links, filename) :
     #loc_ = loc.lower()
     title = []
     content = []
@@ -49,17 +49,27 @@ def extract_news(covid_links) :
             article.nlp()
             title.append(article.title)
             content.append(article.summary)
+            #print(article.title)
+            #print(article.summary)
+            #print("")
+            #break
         except :
             continue
         
-            
-    return (title, content)
+    data = dict()
+    data['title'] = title
+    data['content'] = content
+    with open(filename, 'w') as fh:
+        fh.write(json.dumps(data))
+    return 
        
 
 def allNews() :
     articles = []
-    response = requests.get(url_lst_all[0], allow_redirects = True)
-    soup = BeautifulSoup(response.text)
+    #response = requests.get(url_lst_all[0], allow_redirects = True)
+    #soup = BeautifulSoup(response.text)
+    r = requests.get(url_lst_all[0]) 
+    soup = BeautifulSoup(r.content, 'html5lib') 
     #text1 = soup.findAll('h3', class_ = "")
     text2 = soup.findAll('div', class_ = "blogSysn")
     #text3 = soup.findAll('span')
@@ -67,8 +77,8 @@ def allNews() :
         if(len(text.text) > 50):
             articles.append(text.text)
             
-    response = requests.get(url_lst_all[1], allow_redirects = True)
-    soup = BeautifulSoup(response.text)
+    r = requests.get(url_lst_all[1]) 
+    soup = BeautifulSoup(r.content, 'html5lib') 
     #text1 = soup.findAll('h3')
     text2 = soup.findAll('a')
     text3 = soup.findAll('li', class_ = "row")
@@ -87,8 +97,8 @@ def allNews() :
             articles.append(blog)
         
 
-    response = requests.get(url_lst_all[2], allow_redirects = True)
-    soup = BeautifulSoup(response.text)
+    r = requests.get(url_lst_all[2]) 
+    soup = BeautifulSoup(r.content, 'html5lib') 
     tags = soup.findAll('a')
     i = 0
     for tag in tags:
@@ -122,14 +132,14 @@ def allNews() :
             except :
                 continue
     
-    response = requests.get(url_lst_all[3], allow_redirects = True)
-    soup = BeautifulSoup(response.text)
+    r = requests.get(url_lst_all[3]) 
+    soup = BeautifulSoup(r.text, 'html5lib') 
     tags = soup.findAll('script')
     data = json.loads(tags[1].text, strict=False)
     for t in data['liveBlogUpdate'] :
         for word in keywords:
-            if word in t['title'].lower() :
-                articles.append(t['title'])
+            if word in t['headline'].lower() :
+                articles.append(t['headline'])
                 break
     
     return articles
@@ -171,8 +181,8 @@ def citywise(loc) :
         length_ = len(url_)
         length = len(url)
         #print(url_)
-        response = requests.get(url_, allow_redirects = True)
-        soup = BeautifulSoup(response.text)
+        r = requests.get(url_) 
+        soup = BeautifulSoup(r.content, 'html5lib') 
         one_a_tag = soup.findAll('a')
         for link in one_a_tag :
             try :
@@ -233,8 +243,8 @@ def statewise(loc) :
         if(parser[-1] != loc.lower()):
             continue
         #covid_statewise.append(parser[-1])
-        response = requests.get(link)
-        soup = BeautifulSoup(response.content, 'html5lib') 
+        r = requests.get(link) 
+        soup = BeautifulSoup(r.content, 'html5lib') 
         tags = soup.findAll('script')
         tags_ = soup.findAll('a')
         lst = []
@@ -282,16 +292,21 @@ def statewise(loc) :
 def main() :
     if(sys.argv[1] == "all") :
         articles = allNews()
-        for article in articles:
-            print(article)
-            print("")
+        #for article in articles:
+            #print(article)
+            #print("")
+            #break
          #convert set of strings into json
+        data = dict()
+        data['articles'] = articles
+        with open("all.json", 'w') as fh:
+            fh.write(json.dumps(data))
     elif(sys.argv[1] == "statewise") :
         covid_links = statewise(sys.argv[2])
-        data = extract_news(covid_links)
+        extract_news(covid_links, str(sys.argv[2]) + ".json")
     elif(sys.argv[1] == "citywise") :
         covid_links = citywise(sys.argv[2])
-        data = extract_news(covid_links)
+        extract_news(covid_links, str(sys.argv[2]) + ".json")
     #elif(sys.argv[1] == "regionwise") :
         #covid_links = regionwise()
         #data = extract_news(covid_links, sys_argv[2])

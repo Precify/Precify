@@ -73,7 +73,9 @@ for j in range(1,len(tr_elements)):
         i+=1
 Dict={title:column for (title,column) in col}
 df=pd.DataFrame(Dict)
+#print(df)
 #convert df into json
 data = df.to_json(orient='columns')
 with open("stats.json", 'w') as fh:
         fh.write(json.dumps(data))
+#df.to_csv("stats.csv")

@@ -132,6 +132,8 @@ def start(username = None):
     for tweet in tweets :
         for word in keywords:
             if word in tweet.lower() :
+                #print(tweet)
+                #print("")
                 articles.append(tweet)
                 break
     

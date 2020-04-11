@@ -232,6 +232,8 @@ def citywise() :
                         title.append(article.title)
                         content.append(article.summary)
                         #print(link)
+                        print(article.title)
+                        print(article.summary)
                         break
             except :
                 break
@@ -292,6 +294,8 @@ def statewise() :
                             locations.append(loc)
                             title.append(article.title)
                             content.append(article.summary)
+                            print(article.title)
+                            print(article.summary)
                             break
                     
             except:
