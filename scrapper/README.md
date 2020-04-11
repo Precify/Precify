@@ -29,4 +29,8 @@ Give covid-19 news
 # tweets_scrapper.py
 
 `python tweets_scrapper.py <twitter-username>`
+
+# patient_wise.py
+
+`python patient_wise.py`
     

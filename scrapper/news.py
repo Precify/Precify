@@ -41,6 +41,8 @@ def extract_news(covid_links, filename) :
     #loc_ = loc.lower()
     title = []
     content = []
+    url = []
+    authors = []
     for link in covid_links :
         try :
             article = Article(link)
@@ -49,6 +51,8 @@ def extract_news(covid_links, filename) :
             article.nlp()
             title.append(article.title)
             content.append(article.summary)
+            url.append(link)
+            authors.append(article.authors)
             #print(article.title)
             #print(article.summary)
             #print("")
@@ -59,6 +63,8 @@ def extract_news(covid_links, filename) :
     data = dict()
     data['title'] = title
     data['content'] = content
+    data['authors'] = authors
+    data['url'] = url
     with open(filename, 'w') as fh:
         fh.write(json.dumps(data))
     return 
