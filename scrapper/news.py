@@ -47,14 +47,14 @@ def connection(conn, link, author, source, text) :
     response = conn.getresponse()
     print(response.read().decode())
 
-def extract_news(covid_links, filename) :
+def extract_news(covid_links, filename, link_conn) :
     #loc_ = loc.lower()
     title = []
     content = []
     url = []
     authors = []
     limit = 0
-    conn = http.client.HTTPSConnection('5182c18f.ngrok.io')
+    conn = http.client.HTTPSConnection(link_conn)
     for link in covid_links :
         try :
             article = Article(link)
@@ -319,7 +319,7 @@ def statewise(loc) :
 def main() :
     if(sys.argv[1] == "all") :
         articles = allNews()
-        conn = http.client.HTTPSConnection('5182c18f.ngrok.io')
+        conn = http.client.HTTPSConnection(sys.argv[len(sys.argv)-1])
         limit = 0
         for article in articles:
             connection(conn, "", "", "", article)
@@ -337,10 +337,10 @@ def main() :
             fh.write(json.dumps(data))
     elif(sys.argv[1] == "statewise") :
         covid_links = statewise(sys.argv[2])
-        extract_news(covid_links, "./data/" + str(sys.argv[2]) + ".json")
+        extract_news(covid_links, "./data/" + str(sys.argv[2]) + ".json", sys.argv[len(sys.argv)-1])
     elif(sys.argv[1] == "citywise") :
         covid_links = citywise(sys.argv[2])
-        extract_news(covid_links, "./data/" + str(sys.argv[2]) + ".json")
+        extract_news(covid_links, "./data/" + str(sys.argv[2]) + ".json", sys.argv[len(sys.argv)-1])
     #elif(sys.argv[1] == "regionwise") :
         #covid_links = regionwise()
         #data = extract_news(covid_links, sys_argv[2])

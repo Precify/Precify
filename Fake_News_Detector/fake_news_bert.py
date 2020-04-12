@@ -1,9 +1,9 @@
 import pandas as pd 
 import numpy as np 
 import torch.nn as nn
-#from pytorch_pretrained_bert import BertTokenizer, BertModel
+from pytorch_pretrained_bert import BertTokenizer, BertModel
 import torch
-#from torchnlp.datasets import imdb_dataset
+from torchnlp.datasets import imdb_dataset
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import classification_report
 from collections import Counter 
@@ -16,8 +16,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
-def get_data() :
-    conn = http.client.HTTPSConnection('5182c18f.ngrok.io')
+def get_data(link_conn) :
+    try :
+        conn = http.client.HTTPSConnection(link_conn)
+    except :
+        conn = http.client.HTTPSConnection('localhost:5000')
     headers = {'Content-type': 'application/json'}
     conn.request('GET', '/getAllUntestedPosts', None, headers)
     response = conn.getresponse()
@@ -44,7 +47,7 @@ def training(batch_size, epoch_size, filename) :
     '''very unethical way of loading and traing the data in same function'''
     pd.set_option('display.max_columns', None)
     train_data, test_data = imdb_dataset(train=True, test=True)
-    df = pd.read_csv("./data/bert.csv")
+    df = pd.read_csv("./data/fake.csv")
     df = df[['text', 'type']]
     #print(len(df))
 
@@ -131,6 +134,22 @@ def training(batch_size, epoch_size, filename) :
 def testing(df, filename) :
     
     #input
+    #device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    l = len(df)
+    lst = []
+    if(l%2 == 1):
+        for i in range(l) :
+            if(i%2 == 1) :
+                lst.append('fake')
+            else:
+                lst.append('satire')
+    else :
+        for i in range(l) :
+            if(i%2 == 0) :
+                lst.append('fake')
+            else:
+                lst.append('satire')
+    df['type'] = lst
     test_data = df
     test_data1 = [{'text': text, 'type': ""} for text in list(test_data['text']) ]
 
@@ -146,6 +165,7 @@ def testing(df, filename) :
     test_tokens_ids = list(map(tokenizer.convert_tokens_to_ids, test_tokens))
     test_tokens_ids = pad_sequences(test_tokens_ids, maxlen=512, truncating="post", padding="post", dtype="int")
     test_y = np.array(test_labels) == 'fake'
+    test_y = torch.from_numpy(np.array(test_y, dtype=np.uint8))
     
     BATCH_SIZE = 1
     
@@ -180,8 +200,11 @@ def testing(df, filename) :
 
     return lst
 
-def fake_post(article, score) :
-    conn = http.client.HTTPSConnection('5182c18f.ngrok.io')
+def fake_post(article, score, link_conn) :
+    try :
+        conn = http.client.HTTPSConnection(link_conn)
+    except :
+        conn = http.client.HTTPSConnection('localhost:5000')
     headers = {'Content-type': 'application/json'}
     data = article
     data['fakeness'] = str(score)
@@ -191,8 +214,11 @@ def fake_post(article, score) :
     print(response.read().decode())
     return
   
-def true_post(article, score) :
-    conn = http.client.HTTPSConnection('5182c18f.ngrok.io')
+def true_post(article, score, link_conn) :
+    try :
+        conn = http.client.HTTPSConnection(link_conn)
+    except :
+        conn = http.client.HTTPSConnection('localhost:5000')
     headers = {'Content-type': 'application/json'}
     data = article
     data['fakeness'] = str(score)
@@ -203,22 +229,23 @@ def true_post(article, score) :
     return
 
 
-def using_bert(lst_bert, filename) :
+def using_bert(lst_bert, filename, link_conn) :
     lst = []
     for t in lst_bert :
         lst.append(t['content'])
     df = pd.DataFrame(lst, columns=["text"])
     scores = testing(df, filename)
+    #print(scores)
     i = 0
     for article in lst_bert :
-        if(score[i] > 0.5 ) :
-            fake_post(article, score[i])
+        if(scores[i] > 0.5 ) :
+            fake_post(article, scores[i], link_conn)
         else :
-            true_post(article, score[i])
+            true_post(article, scores[i], link_conn)
         i = i + 1
     return
             
-def malicious_url_detector(lst_url) :
+'''def malicious_url_detector(lst_url, link_conn) :
     lst = []
     for t in lst_url :
         lst.append(t['url'])
@@ -240,20 +267,20 @@ def malicious_url_detector(lst_url) :
     scores = logit.predict(test_data)
     i = 0
     for article in lst_bert :
-        if(score[i] > 0.5 ) :
-            fake_post(article, score[i])
+        if(scores[i] > 0.5 ) :
+            fake_post(article, scores[i], link_conn)
         else :
-            true_post(article, score[i])
+            true_post(article, scores[i], link_conn)
         i = i + 1
-    return
+    return'''
        
 
 def main() :
-    data = get_data()
+    data = get_data(sys.argv[1])
     data = json.loads(data)
     lst_bert = []
     lst_url = []
-    for article in data:
+    '''for article in data:
         try:
             if(len(article['url'] != 0) :
                lst_url.append(article)
@@ -262,9 +289,12 @@ def main() :
        except:
                lst_bert.append(article)
     if(len(lst_url) != 0) :
-        malicious_url_detector(lst_url)
+        malicious_url_detector(lst_url, sys.argv[1])
     if(len(lst_bert) != 0):
-        using_bert(lst_bert, "fake_news_bert.pt")
+        using_bert(lst_bert, "./checkpoints/fake_news_bert.pt", sys.argv[1])'''
+    for article in data:
+        lst_bert.append(article)
+    using_bert(lst_bert, "./checkpoints/fake_news_bert.pt")
     
 if __name__ == "__main__" :
     main()
