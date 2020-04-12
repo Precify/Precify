@@ -10,6 +10,7 @@ from collections import Counter
 import http.client
 import json
 
+import time
 import random
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -134,7 +135,7 @@ def training(batch_size, epoch_size, filename) :
 def testing(df, filename) :
     
     #input
-    #device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     l = len(df)
     lst = []
     if(l%2 == 1):
@@ -180,6 +181,7 @@ def testing(df, filename) :
     bert_clf = BertBinaryClassifier()
     optimizer = torch.optim.Adam(bert_clf.parameters(), lr=3e-6)
     bert_clf = torch.load(filename)
+    bert_clf = bert_clf.to(device)
     bert_clf.eval()
     bert_predicted = []
     all_logits = []
@@ -188,13 +190,15 @@ def testing(df, filename) :
         for step_num, batch_data in enumerate(test_dataloader):
 
             token_ids, masks, labels = tuple(t for t in batch_data)
-
+            token_ids = token_ids.to(device)
+            masks = masks.to(device)
+            labels = labels.to(device)
             logits = bert_clf(token_ids, masks)
-            lst.append(logits)
+            
             loss_func = nn.BCELoss()
             loss = loss_func(logits, labels)
             numpy_logits = logits.cpu().detach().numpy()
-
+            lst.append(numpy_logits)
             bert_predicted += list(numpy_logits[:, 0])
             all_logits += list(numpy_logits[:, 0])
 
@@ -228,20 +232,46 @@ def true_post(article, score, link_conn) :
     print(response.read().decode())
     return
 
+def display(article, score, link_conn) :
+    try :
+        conn = http.client.HTTPSConnection(link_conn)
+    except :
+        conn = http.client.HTTPSConnection('localhost:5000')
+    headers = {'Content-type': 'application/json'}
+    data = dict()
+    data['url'] = article['url']
+    data['fakeness'] = str(score)
+    json_data = json.dumps(data)
+    conn.request('POST', '/fakePost', json_data, headers)
+    response = conn.getresponse()
+    print(response.read().decode())
+    return
+
 
 def using_bert(lst_bert, filename, link_conn) :
     lst = []
+    original = []
     for t in lst_bert :
-        lst.append(t['content'])
+        try:
+            lst.append(t['text'])
+            original.append(t)
+        except:
+            continue
     df = pd.DataFrame(lst, columns=["text"])
     scores = testing(df, filename)
     #print(scores)
     i = 0
-    for article in lst_bert :
-        if(scores[i] > 0.5 ) :
+    limit = 0
+    for article in original :
+        limit = limit + 1
+        if(limit == 20) :
+            time.sleep(61)
+            limit = 0
+        '''if(scores[i] > 0.5 ) :
             fake_post(article, scores[i], link_conn)
         else :
-            true_post(article, scores[i], link_conn)
+            true_post(article, scores[i], link_conn)'''
+        display(article, scores[i], link_conn)
         i = i + 1
     return
             

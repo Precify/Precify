@@ -93,9 +93,10 @@ def extract_news(covid_links, filename, link_conn) :
 
 def allNews() :
     articles = []
+    urls = []
     #response = requests.get(url_lst_all[0], allow_redirects = True)
     #soup = BeautifulSoup(response.text)
-    r = requests.get(url_lst_all[0]) 
+    '''r = requests.get(url_lst_all[0]) 
     soup = BeautifulSoup(r.content, 'html5lib') 
     #text1 = soup.findAll('h3', class_ = "")
     text2 = soup.findAll('div', class_ = "blogSysn")
@@ -144,7 +145,7 @@ def allNews() :
                         my_str = _RE_STRIP_WHITESPACE.sub("", my_str)
                         articles.append(my_str)
         except:
-            continue
+            continue'''
             
     url = ('http://newsapi.org/v2/top-headlines?'
        'country=in&'
@@ -155,11 +156,12 @@ def allNews() :
         for word in keywords:
             try :
                 if word in article['content'].lower():
-                    articles.append['title']
+                    articles.append(article['description'])
+                    urls.append(article['url'])
             except :
                 continue
     
-    r = requests.get(url_lst_all[3]) 
+    '''r = requests.get(url_lst_all[3]) 
     soup = BeautifulSoup(r.text, 'html5lib') 
     tags = soup.findAll('script')
     data = json.loads(tags[1].text, strict=False)
@@ -167,9 +169,9 @@ def allNews() :
         for word in keywords:
             if word in t['headline'].lower() :
                 articles.append(t['headline'])
-                break
+                break'''
     
-    return articles
+    return articles, urls
 
 
 
@@ -318,11 +320,13 @@ def statewise(loc) :
      
 def main() :
     if(sys.argv[1] == "all") :
-        articles = allNews()
+        articles, urls = allNews()
         conn = http.client.HTTPSConnection(sys.argv[len(sys.argv)-1])
         limit = 0
+        i = 0
         for article in articles:
-            connection(conn, "", "", "", article)
+            connection(conn, urls[i], "", "", article)
+            i = i + 1
             limit = limit + 1
             if(limit == 20) :
                 sleep(61)
@@ -333,6 +337,7 @@ def main() :
          #convert set of strings into json
         data = dict()
         data['articles'] = articles
+        data['url'] = urls
         with open("./data/all.json", 'w') as fh:
             fh.write(json.dumps(data))
     elif(sys.argv[1] == "statewise") :
