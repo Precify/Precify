@@ -291,10 +291,10 @@ def main() :
     if(len(lst_url) != 0) :
         malicious_url_detector(lst_url, sys.argv[1])
     if(len(lst_bert) != 0):
-        using_bert(lst_bert, "./checkpoints/fake_news_bert.pt", sys.argv[1])'''
+        using_bert(lst_bert, sys.argv[2], sys.argv[1])'''
     for article in data:
         lst_bert.append(article)
-    using_bert(lst_bert, "./checkpoints/fake_news_bert.pt")
+    using_bert(lst_bert, sys.argv[2], sys_argv[1])
     
 if __name__ == "__main__" :
     main()
