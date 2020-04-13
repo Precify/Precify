@@ -122,7 +122,7 @@ def allNews() :
             if(isinstance(ch, bs4.element.NavigableString)) :
                 blog = blog + ch
         if(len(blog) > 25) :
-            articles.append(blog)
+            articles.append(blog)'''
         
 
     r = requests.get(url_lst_all[2]) 
@@ -144,8 +144,10 @@ def allNews() :
                         my_str = _RE_COMBINE_WHITESPACE.sub(" ", my_str)
                         my_str = _RE_STRIP_WHITESPACE.sub("", my_str)
                         articles.append(my_str)
+                        g = "https://www.business-standard.com" + tag['href']
+                        urls.append(g)
         except:
-            continue'''
+            continue
             
     url = ('http://newsapi.org/v2/top-headlines?'
        'country=in&'
@@ -161,7 +163,7 @@ def allNews() :
             except :
                 continue
     
-    '''r = requests.get(url_lst_all[3]) 
+    r = requests.get(url_lst_all[3]) 
     soup = BeautifulSoup(r.text, 'html5lib') 
     tags = soup.findAll('script')
     data = json.loads(tags[1].text, strict=False)
@@ -169,7 +171,8 @@ def allNews() :
         for word in keywords:
             if word in t['headline'].lower() :
                 articles.append(t['headline'])
-                break'''
+                urls.append(t['url'])
+                break
     
     return articles, urls
 
