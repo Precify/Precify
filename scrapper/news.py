@@ -24,6 +24,8 @@ from selenium import webdriver
 
 import sys
 
+import http.client
+
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -37,12 +39,22 @@ keywords = ["corona", "coronavirus", "lockdown", "covid-19", "covid19", "masks",
 
 apikey = "c8c54678d99e43d9b11a09d74e8dfa51"
 
-def extract_news(covid_links, filename) :
+def connection(conn, link, author, source, text) :
+    headers = {'Content-type': 'application/json'}
+    data = {'url': str(link), 'author' : str(author), 'source' : str(source), 'text' : str(text)}
+    json_data = json.dumps(data)
+    conn.request('POST', '/addPost', json_data, headers)
+    response = conn.getresponse()
+    print(response.read().decode())
+
+def extract_news(covid_links, filename, link_conn) :
     #loc_ = loc.lower()
     title = []
     content = []
     url = []
     authors = []
+    limit = 0
+    conn = http.client.HTTPSConnection(link_conn)
     for link in covid_links :
         try :
             article = Article(link)
@@ -53,6 +65,15 @@ def extract_news(covid_links, filename) :
             content.append(article.summary)
             url.append(link)
             authors.append(article.authors)
+            if len(article.authors) != 0 :
+                author = article.authors
+            else :
+                author = ""
+            connection(conn, link, author, article.source_url, article.summary)
+            limit = limit + 1
+            if(limit == 20):
+                sleep(61)
+                limit = 0
             #print(article.title)
             #print(article.summary)
             #print("")
@@ -72,9 +93,10 @@ def extract_news(covid_links, filename) :
 
 def allNews() :
     articles = []
+    urls = []
     #response = requests.get(url_lst_all[0], allow_redirects = True)
     #soup = BeautifulSoup(response.text)
-    r = requests.get(url_lst_all[0]) 
+    '''r = requests.get(url_lst_all[0]) 
     soup = BeautifulSoup(r.content, 'html5lib') 
     #text1 = soup.findAll('h3', class_ = "")
     text2 = soup.findAll('div', class_ = "blogSysn")
@@ -100,7 +122,7 @@ def allNews() :
             if(isinstance(ch, bs4.element.NavigableString)) :
                 blog = blog + ch
         if(len(blog) > 25) :
-            articles.append(blog)
+            articles.append(blog)'''
         
 
     r = requests.get(url_lst_all[2]) 
@@ -122,6 +144,8 @@ def allNews() :
                         my_str = _RE_COMBINE_WHITESPACE.sub(" ", my_str)
                         my_str = _RE_STRIP_WHITESPACE.sub("", my_str)
                         articles.append(my_str)
+                        g = "https://www.business-standard.com" + tag['href']
+                        urls.append(g)
         except:
             continue
             
@@ -134,7 +158,8 @@ def allNews() :
         for word in keywords:
             try :
                 if word in article['content'].lower():
-                    articles.append['title']
+                    articles.append(article['description'])
+                    urls.append(article['url'])
             except :
                 continue
     
@@ -146,9 +171,10 @@ def allNews() :
         for word in keywords:
             if word in t['headline'].lower() :
                 articles.append(t['headline'])
+                urls.append(t['url'])
                 break
     
-    return articles
+    return articles, urls
 
 
 
@@ -297,22 +323,32 @@ def statewise(loc) :
      
 def main() :
     if(sys.argv[1] == "all") :
-        articles = allNews()
-        #for article in articles:
+        articles, urls = allNews()
+        conn = http.client.HTTPSConnection(sys.argv[len(sys.argv)-1])
+        limit = 0
+        i = 0
+        for article in articles:
+            connection(conn, urls[i], "", "", article)
+            i = i + 1
+            limit = limit + 1
+            if(limit == 20) :
+                sleep(61)
+                limit = 0
             #print(article)
             #print("")
             #break
          #convert set of strings into json
         data = dict()
         data['articles'] = articles
-        with open("all.json", 'w') as fh:
+        data['url'] = urls
+        with open("./data/all.json", 'w') as fh:
             fh.write(json.dumps(data))
     elif(sys.argv[1] == "statewise") :
         covid_links = statewise(sys.argv[2])
-        extract_news(covid_links, str(sys.argv[2]) + ".json")
+        extract_news(covid_links, "./data/" + str(sys.argv[2]) + ".json", sys.argv[len(sys.argv)-1])
     elif(sys.argv[1] == "citywise") :
         covid_links = citywise(sys.argv[2])
-        extract_news(covid_links, str(sys.argv[2]) + ".json")
+        extract_news(covid_links, "./data/" + str(sys.argv[2]) + ".json", sys.argv[len(sys.argv)-1])
     #elif(sys.argv[1] == "regionwise") :
         #covid_links = regionwise()
         #data = extract_news(covid_links, sys_argv[2])
