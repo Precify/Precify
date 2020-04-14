@@ -6,8 +6,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="total_death_cases">Total Death Cases</string>
-    <string name="total_recovered_cases">Total Recovered Cases</string>
-    <string name="total_active_cases">Total Active Cases</string>
-    <string name="total_cases">Total Cases</string>
+    <string name="total_death_cases">Deaths</string>
+    <string name="total_recovered_cases">Recovered</string>
+    <string name="total_active_cases">Active</string>
+    <string name="total_cases">Cases</string>
+    <string name="this_is_news_title">This is News Title</string>
 </resources>

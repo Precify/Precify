@@ -1,11 +1,17 @@
 package com.rohit2810.coview.News.Model
 
 
+import android.annotation.SuppressLint
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
+@SuppressLint("ParcelCreator")
+@Parcelize
 data class Article(
     @SerializedName("author")
-    val author: Any? = null,
+    val author: String? = null,
     @SerializedName("content")
     val content: String? = null,
     @SerializedName("description")
@@ -20,4 +26,4 @@ data class Article(
     val url: String? = null,
     @SerializedName("urlToImage")
     val urlToImage: String
-)
+): Parcelable
