@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                       xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".Fragments.NewsDetailFragment">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:text="@string/this_is_news_title"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/news_detail_title"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"/>
+        <ImageView
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="250dp" tools:src="@tools:sample/backgrounds/scenic"
+                android:id="@+id/news_detail_image"/>
+        <TextView
+                android:text="TextView"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/news_detail_desc"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
+        <TextView
+                android:text="Link to Article : "
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"/>
+        <TextView
+                android:text="TextView"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/news_detail_link"/>
+        <LinearLayout
+                android:padding="8dp"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/news_detail_published" android:layout_weight="1"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/news_detail_source" android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

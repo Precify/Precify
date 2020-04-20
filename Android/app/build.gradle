@@ -27,6 +27,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
@@ -78,4 +81,13 @@ dependencies {
 
     //Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //Room Database
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    implementation 'androidx.room:room-ktx:2.2.5'
+    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
+
+    //MP Android Chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

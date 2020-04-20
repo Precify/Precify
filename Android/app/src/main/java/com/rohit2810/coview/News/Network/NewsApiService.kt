@@ -1,6 +1,9 @@
 package com.rohit2810.coview.News.Network
 
+import android.content.Context
 import android.util.Log
+import com.google.gson.GsonBuilder
+import com.rohit2810.coview.NetworkUtils.NetworkConnectionInterceptor
 import com.rohit2810.coview.News.Model.NewsResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -9,6 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import timber.log.Timber
 
 interface NewsApiService {
 
@@ -20,10 +24,12 @@ interface NewsApiService {
 
 
     companion object{
-        operator fun invoke(): NewsApiService {
+        operator fun invoke(context: Context): NewsApiService {
+
 
             val requestInterceptor = Interceptor {chain ->
-                Log.d("NewActivity", chain.request().toString())
+                Timber.d(chain.request().toString())
+
                 val url = chain.request()
                     .url()
                     .newBuilder()
@@ -36,7 +42,7 @@ interface NewsApiService {
                     .url(url)
                     .build()
 
-                Log.d("NewActivity", request.toString())
+                Timber.d( request.toString())
 
 
                 return@Interceptor chain.proceed(request)
@@ -44,12 +50,15 @@ interface NewsApiService {
 
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
+                .addInterceptor(NetworkConnectionInterceptor(context))
                 .build()
 
+
+            val gson = GsonBuilder().setLenient().create()
             val path = "http://newsapi.org/v2/"
             return Retrofit.Builder()
-                .client(okHttpClient)
                 .baseUrl(path)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(NewsApiService::class.java)
