@@ -9,4 +9,8 @@ class ApplicationClass : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
     }
+
+    companion object{
+        var position : Int = 0;
+    }
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+             tools:context=".Fragments.StatsBaseFragment">
+
+    <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+    >
+
+        <com.google.android.material.tabs.TabItem
+                android:id="@+id/stats_tab_global"
+                android:text="Global" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <com.google.android.material.tabs.TabItem
+                android:id="@+id/stats_tab_india"
+                android:text="India" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+    </com.google.android.material.tabs.TabLayout>
+    <TextView
+            android:text="See statewise stats"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:id="@+id/stats_link_states"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+            android:padding="8dp"
+            android:paddingEnd="0dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:layout_marginEnd="16dp" app:layout_constraintEnd_toStartOf="@+id/state_icon"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tabs"/>
+    <ImageView
+            android:layout_width="0dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:tint="@color/colorPrimary"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+            android:id="@+id/state_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="@+id/stats_link_states"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"/>
+    <View
+            android:layout_width="wrap_content"
+            android:background="#505050"
+            android:layout_height="0.5dp" android:id="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/stats_link_states"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/fragment_container"
+            app:layout_constraintTop_toBottomOf="@+id/stats_link_states">
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

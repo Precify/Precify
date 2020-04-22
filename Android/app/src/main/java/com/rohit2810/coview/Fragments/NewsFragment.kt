@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,20 +16,20 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.rohit2810.coview.MainViewModel
 import com.rohit2810.coview.News.Model.Article
-import com.rohit2810.coview.News.NewsAdapter
+import com.rohit2810.coview.News.Adapter.NewsAdapter
+import com.rohit2810.coview.News.ViewModel.NewsViewModel
 import com.rohit2810.coview.R
 import kotlinx.android.synthetic.main.fragment_news.*
 import timber.log.Timber
-import java.lang.Exception
 
 
 class NewsFragment : Fragment(){
 
     private lateinit var newsAdapter: NewsAdapter
-    private lateinit var newsViewModel: MainViewModel
+    private lateinit var newsViewModel: NewsViewModel
     private lateinit var navController: NavController
+    private lateinit var article: Article
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,18 +48,31 @@ class NewsFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
+        val mainNewsTitle = view.findViewById<TextView>(R.id.main_news_title)
 
-        newsViewModel = activity?.run {
-            ViewModelProvider.AndroidViewModelFactory.getInstance(this.application).create(MainViewModel::class.java)
-        } ?: throw Exception("Invalid Activity")
-        newsAdapter = NewsAdapter(view.context, {article -> newsArticleClicked(article)})
+        newsViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(activity!!.application).create(NewsViewModel::class.java)
+        newsAdapter =
+            NewsAdapter(view.context, { article -> newsArticleClicked(article) })
         newsViewModel.allNews.observe(this, Observer {
-            if(it!!.articles.isNotEmpty()) {
-                Glide.with(view.context).load(it.articles.get(0).urlToImage).into(main_news_image)
-                main_news_title.text = it.articles.get(0).title
-                newsAdapter.setArray(it.articles.subList(1, it.articles.lastIndex))
+            if(it!!.isNotEmpty()) {
+                news_progressBar.visibility = View.GONE
+                main_news.visibility = View.VISIBLE
+                article = it[0]
+                Timber.d(article.toString())
+                Glide.with(view).load(article!!.urlToImage).into(main_news_image)
+                mainNewsTitle.text = it[0].title
+                val newList = it.drop(1)
+                if(newList.isNotEmpty()) {
+                    newsAdapter.setArray(newList)
+                }
             }
         })
+        main_news_image.setOnClickListener {
+            navController.navigate(
+                R.id.action_newsFragment_to_newsDetailFragment,
+                bundleOf("article" to article)
+            )
+        }
 
         val recyclerView: RecyclerView = view.findViewById(R.id.main_news_recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(view.context)

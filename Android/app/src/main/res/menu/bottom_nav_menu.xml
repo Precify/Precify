@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:id="@+id/statsFragment"
-            android:icon="@drawable/stats"
+            android:id="@+id/statsBaseFragment"
+            android:icon="@drawable/ic_public_black_24dp"
             android:title="Stats"/>
 
     <item
@@ -14,6 +14,7 @@
             android:id="@+id/homeFragment"
             android:icon="@drawable/detect"
             android:title="Detect"/>
+
 
 
 

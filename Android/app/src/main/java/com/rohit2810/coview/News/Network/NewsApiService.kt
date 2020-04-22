@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.google.gson.GsonBuilder
 import com.rohit2810.coview.NetworkUtils.NetworkConnectionInterceptor
+import com.rohit2810.coview.News.Model.Article
 import com.rohit2810.coview.News.Model.NewsResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

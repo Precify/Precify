@@ -2,20 +2,40 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
-            app:startDestination="@id/statsFragment">
+            app:startDestination="@id/statsBaseFragment">
 
-    <fragment android:id="@+id/homeFragment" android:name="com.rohit2810.coview.Fragments.HomeFragment"
-              android:label="Home" tools:layout="@layout/fragment_home"/>
+    <fragment android:id="@+id/homeFragment" android:name="com.rohit2810.coview.Fragments.DetectFragment"
+              android:label="Detect" tools:layout="@layout/fragment_home"/>
     <fragment android:id="@+id/newsFragment" android:name="com.rohit2810.coview.Fragments.NewsFragment"
               android:label="News" tools:layout="@layout/fragment_news">
-        <action android:id="@+id/action_newsFragment_to_newsDetailFragment" app:destination="@id/newsDetailFragment">
+        <action android:id="@+id/action_newsFragment_to_newsDetailFragment" app:destination="@id/newsDetailFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
             <!--<argument android:name="article" app:argType="com.rohit2810.coview.News.Model.Article"/>-->
         </action>
     </fragment>
-    <fragment android:id="@+id/statsFragment" android:name="com.rohit2810.coview.Fragments.StatsFragment"
-              android:label="Stats" tools:layout="@layout/fragment_stats"/>
     <fragment android:id="@+id/splashFragment" android:name="com.rohit2810.coview.Fragments.SplashFragment"
               android:label="fragment_splash" tools:layout="@layout/fragment_splash"/>
     <fragment android:id="@+id/newsDetailFragment" android:name="com.rohit2810.coview.Fragments.NewsDetailFragment"
               android:label="Details" tools:layout="@layout/fragment_news_detail"/>
+    <fragment android:id="@+id/statsBaseFragment" android:name="com.rohit2810.coview.Fragments.StatsBaseFragment"
+              android:label="Stats" tools:layout="@layout/fragment_stats_base">
+        <action android:id="@+id/action_statsBaseFragment_to_stateWiseStatsFragment"
+                app:destination="@id/stateWiseStatsFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
+        />
+        <action android:id="@+id/action_statsBaseFragment_to_countryWiseStatsFragment"
+                app:destination="@id/countryWiseStatsFragment"/>
+    </fragment>
+    <fragment android:id="@+id/stateWiseStatsFragment"
+              android:name="com.rohit2810.coview.Fragments.StateWiseStatsFragment"
+              android:label="States" tools:layout="@layout/fragment_state_wise_stats"/>
+    <fragment android:id="@+id/countryWiseStatsFragment"
+              android:name="com.rohit2810.coview.Fragments.CountryWiseStatsFragment"
+              android:label="Countries" tools:layout="@layout/fragment_country_wise_stats"/>
 </navigation>

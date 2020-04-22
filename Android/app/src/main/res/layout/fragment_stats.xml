@@ -1,237 +1,264 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            tools:context=".Fragments.StatsFragment"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:layout_gravity="center"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:gravity="center"
             android:layout_height="match_parent">
 
 
-        <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="300dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/stats_main_cardView">
-            <LinearLayout
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/any_chart_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                />
-
-                <ProgressBar
-                        android:id="@+id/progress_bar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-    <androidx.core.widget.NestedScrollView android:layout_width="0dp"
-                                           android:layout_height="300dp"
-                                           app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
-                                           app:layout_constraintStart_toStartOf="parent"
-                                           android:layout_marginStart="16dp" android:layout_marginTop="16dp"
-                                           app:layout_constraintTop_toBottomOf="@+id/stats_main_cardView">
-
-
-        <LinearLayout
-                android:orientation="vertical"
+        <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:id="@+id/stats_progressBar" android:layout_weight="1"/>
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+                                           android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                tools:context=".Fragments.StatsFragment"
+                android:id="@+id/stats_main"
+                android:visibility="visible"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:background="@drawable/card_background"
-                        android:layout_width="0dp"
-                        android:layout_margin="8dp"
-                        android:padding="8dp"
-                        android:layout_weight="1"
+                android:layout_height="match_parent">
+
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="300dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+                    android:id="@+id/stats_main_cardView"
+                    android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent">
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent">
+                    <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/any_chart_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                    />
 
-                    <TextView
-                            android:id="@+id/stats_total_cases"
-                            android:layout_width="0dp"
+                    <ProgressBar
+                            android:id="@+id/progress_bar"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="8dp"
-                            android:ellipsize="end"
-                            android:fontFamily="@font/poppins"
-                            android:maxLines="1"
-                            android:text=""
-                            android:textAlignment="center"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-
-
-                    <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="16dp"
-                            android:fontFamily="@font/poppins"
-                            android:text="@string/total_cases"
-                            android:textAlignment="center"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/stats_total_cases"
-                            app:layout_constraintTop_toBottomOf="@+id/stats_total_cases"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="0dp"
-                        android:background="@drawable/card_background"
-                        android:padding="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent">
-
-                    <TextView
-                            android:id="@+id/stats_total_active_cases"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="8dp"
-                            android:ellipsize="end"
-                            android:fontFamily="@font/poppins"
-                            android:maxLines="1"
-                            android:text=""
-                            android:textAlignment="center"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                    />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.core.widget.NestedScrollView android:layout_width="0dp"
+                                                   android:layout_height="300dp"
+                                                   app:layout_constraintEnd_toEndOf="parent"
+                                                   android:layout_marginEnd="16dp"
+                                                   app:layout_constraintStart_toStartOf="parent"
+                                                   android:layout_marginStart="16dp"
+                                                   app:layout_constraintHorizontal_bias="0.0"
+                                                   android:id="@+id/nestedScrollView"
+                                                   android:layout_marginTop="8dp"
+                                                   app:layout_constraintTop_toBottomOf="@+id/stats_main_cardView">
 
 
-                    <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="16dp"
-                            android:fontFamily="@font/poppins"
-                            android:text="@string/total_active_cases"
-                            android:textAlignment="center"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/stats_total_active_cases"
-                            app:layout_constraintTop_toBottomOf="@+id/stats_total_active_cases" />
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                                android:background="@drawable/card_background"
+                                android:layout_width="0dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginRight="8dp"
+                                android:padding="8dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent">
 
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:background="@drawable/card_background"
-                        android:layout_weight="1"
-                        android:layout_margin="8dp"
-                        android:padding="8dp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent">
-
-                    <TextView
-                            android:id="@+id/stats_total_recovered_cases"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="8dp"
-                            android:ellipsize="end"
-                            android:fontFamily="@font/poppins"
-                            android:maxLines="1"
-                            android:text=""
-                            android:textAlignment="center"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                            <TextView
+                                    android:id="@+id/stats_total_cases"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/poppins"
+                                    android:maxLines="1"
+                                    android:text=""
+                                    android:textAlignment="center"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"/>
 
 
-                    <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="16dp"
-                            android:fontFamily="@font/poppins"
-                            android:text="@string/total_recovered_cases"
-                            android:textAlignment="center"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/stats_total_recovered_cases"
-                            app:layout_constraintTop_toBottomOf="@+id/stats_total_recovered_cases"/>
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:fontFamily="@font/poppins"
+                                    android:text="@string/total_cases"
+                                    android:textAlignment="center"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/stats_total_cases"
+                                    app:layout_constraintTop_toBottomOf="@+id/stats_total_cases"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="0dp"
+                                android:background="@drawable/card_background"
+                                android:padding="8dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent">
+
+                            <TextView
+                                    android:id="@+id/stats_total_active_cases"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/poppins"
+                                    android:maxLines="1"
+                                    android:text=""
+                                    android:textAlignment="center"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"/>
 
 
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:fontFamily="@font/poppins"
+                                    android:text="@string/total_active_cases"
+                                    android:textAlignment="center"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/stats_total_active_cases"
+                                    app:layout_constraintTop_toBottomOf="@+id/stats_total_active_cases"/>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:background="@drawable/card_background"
-                        android:layout_weight="1"
-                        android:padding="8dp"
-                        android:layout_width="0dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_height="match_parent">
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
 
-                    <TextView
-                            android:id="@+id/stats_total_death_cases"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="8dp"
-                            android:ellipsize="end"
-                            android:fontFamily="@font/poppins"
-                            android:maxLines="1"
-                            android:text=""
-                            android:textAlignment="center"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                                android:background="@drawable/card_background"
+                                android:layout_weight="1"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginRight="8dp"
+                                android:padding="8dp"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent">
+
+                            <TextView
+                                    android:id="@+id/stats_total_recovered_cases"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/poppins"
+                                    android:maxLines="1"
+                                    android:text=""
+                                    android:textAlignment="center"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"/>
 
 
-                    <TextView
-                            android:id="@+id/note_description_textView"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="16dp"
-                            android:fontFamily="@font/poppins"
-                            android:text="@string/total_death_cases"
-                            android:textAlignment="center"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/stats_total_death_cases"
-                            app:layout_constraintTop_toBottomOf="@+id/stats_total_death_cases" />
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:fontFamily="@font/poppins"
+                                    android:text="@string/total_recovered_cases"
+                                    android:textAlignment="center"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/stats_total_recovered_cases"
+                                    app:layout_constraintTop_toBottomOf="@+id/stats_total_recovered_cases"/>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
 
-        </LinearLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                                android:background="@drawable/card_background"
+                                android:layout_weight="1"
+                                android:padding="8dp"
+                                android:layout_width="0dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:layout_height="match_parent">
+
+                            <TextView
+                                    android:id="@+id/stats_total_death_cases"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/poppins"
+                                    android:maxLines="1"
+                                    android:text=""
+                                    android:textAlignment="center"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"/>
+
+
+                            <TextView
+                                    android:id="@+id/note_description_textView"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:fontFamily="@font/poppins"
+                                    android:text="@string/total_death_cases"
+                                    android:textAlignment="center"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/stats_total_death_cases"
+                                    app:layout_constraintTop_toBottomOf="@+id/stats_total_death_cases"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </LinearLayout>

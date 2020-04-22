@@ -2,6 +2,7 @@ package com.rohit2810.coview.Stats.Network
 
 import android.content.Context
 import com.rohit2810.coview.NetworkUtils.NetworkConnectionInterceptor
+import com.rohit2810.coview.Stats.Model.CountryResponseItem
 import com.rohit2810.coview.Stats.Model.Stats
 import okhttp3.OkHttpClient
 import retrofit2.Response
@@ -9,6 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Query
 
 interface StatsApiService {
 //    @GET("free-api")
@@ -20,6 +22,13 @@ interface StatsApiService {
     @GET("all")
     suspend fun getStats(
     ) : Response<Stats>
+
+    @Headers("Content-Type: application/json")
+    @GET("countries")
+    suspend fun getCountryStats(
+        @Query("yesteday")  yesterday : Boolean = false,
+        @Query("sort") sort: String = "cases"
+    ) : Response<List<CountryResponseItem>>
 
 
     companion object{

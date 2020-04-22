@@ -5,7 +5,7 @@
              android:layout_height="match_parent"
              tools:context=".Fragments.SplashFragment">
     <ImageView
-            android:src="@drawable/icon_splash"
+            android:src="@drawable/ic_virus"
             android:layout_width="150dp"
             android:tint="@color/colorPrimary"
             android:layout_height="150dp" android:id="@+id/imageView2"

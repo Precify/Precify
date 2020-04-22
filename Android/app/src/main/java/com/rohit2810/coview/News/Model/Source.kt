@@ -9,8 +9,6 @@ import kotlinx.android.parcel.Parcelize
 @SuppressLint("ParcelCreator")
 @Parcelize
 data class Source(
-    @SerializedName("id")
-    val id: Number,
     @SerializedName("name")
     val name: String
 ) : Parcelable
