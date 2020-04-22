@@ -18,5 +18,5 @@ Precify provides you fake detection of posts regarding covid19 with stats and ne
 <img src="screenshots/Screenshot_1587113698.png" width="150">
 <img src="screenshots/Screenshot_1587113760.png" width="150">
 <img src="screenshots/Screenshot_1587113780.png" width="150">
-<img src="screenshots/vlcsnap-2020-04-22-11h47m48s579%20(2).png width="150">
+<img src="screenshots/vlcsnap-2020-04-22-11h47m48s579%20(2).png" width="150">
 </div>
