@@ -2,7 +2,7 @@
 Precify provides you fake detection of posts regarding covid19 with stats and news related to covid 19.
 
 ## Download
-Download link
+<a href="https://github.com/Precify/Precify/raw/master/Android/releases/release/app-release.apk"><img src="screenshots/download.png" width="100"></a>
 
 ## Features
 - Fake detection for any news article or posts through any app.
