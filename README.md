@@ -9,8 +9,10 @@ Fake news detection for social good and creating awareness
 
 
 ## Web App
+<div style="display:flex;">
 ![scraped-data](https://user-images.githubusercontent.com/50859092/79023434-f644b000-7b9d-11ea-8e53-f305680c5f1d.png)
 ![web-extension](https://user-images.githubusercontent.com/50859092/79023509-1f654080-7b9e-11ea-9e96-7ccbd590db11.png)
+</div>
 
 ## Android App
 <div style="display:flex;">
