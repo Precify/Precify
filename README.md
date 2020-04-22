@@ -11,9 +11,11 @@ Fake news detection for social good and creating awareness
 
 ![scraped-data](https://user-images.githubusercontent.com/50859092/79023434-f644b000-7b9d-11ea-8e53-f305680c5f1d.png)
 ![web-extension](https://user-images.githubusercontent.com/50859092/79023509-1f654080-7b9e-11ea-9e96-7ccbd590db11.png)
-![app1](https://user-images.githubusercontent.com/50859092/79023538-2f7d2000-7b9e-11ea-98b8-4619ea2ac1e2.jpeg)
-![app2](https://user-images.githubusercontent.com/50859092/79023546-34da6a80-7b9e-11ea-9d2f-52ff6f9f27bd.jpeg)
-![app3](https://user-images.githubusercontent.com/50859092/79023552-39068800-7b9e-11ea-8477-131e27045167.jpeg)
+<div style="display:flex;">
+<img src="Android/screenshots/Screenshot_1587113720.png" width="150">
+<img src="Android/screenshots/Screenshot_1587113698.png" width="150">
+<img src="Android/screenshots/vlcsnap-2020-04-22-11h47m48s579%20(2).png" width="150">
+</div>
 ![cli-mode1](https://user-images.githubusercontent.com/50859092/79023961-33f60880-7b9f-11ea-949a-34c43952cd98.jpeg)
 ![cli-mode2](https://user-images.githubusercontent.com/50859092/79023967-39535300-7b9f-11ea-8504-27ebccee18ed.jpeg)
 ![cli-mode3](https://user-images.githubusercontent.com/50859092/79023973-3d7f7080-7b9f-11ea-8995-7310e60dcd21.jpeg)
