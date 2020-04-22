@@ -16,6 +16,7 @@ Fake news detection for social good and creating awareness
 <img src="Android/screenshots/Screenshot_1587113698.png" width="150">
 <img src="Android/screenshots/vlcsnap-2020-04-22-11h47m48s579%20(2).png" width="150">
 </div>
+
 ![cli-mode1](https://user-images.githubusercontent.com/50859092/79023961-33f60880-7b9f-11ea-949a-34c43952cd98.jpeg)
 ![cli-mode2](https://user-images.githubusercontent.com/50859092/79023967-39535300-7b9f-11ea-8504-27ebccee18ed.jpeg)
 ![cli-mode3](https://user-images.githubusercontent.com/50859092/79023973-3d7f7080-7b9f-11ea-8995-7310e60dcd21.jpeg)
