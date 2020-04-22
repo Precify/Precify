@@ -8,21 +8,26 @@ Fake news detection for social good and creating awareness
 
 
 
-
+## Web App
 ![scraped-data](https://user-images.githubusercontent.com/50859092/79023434-f644b000-7b9d-11ea-8e53-f305680c5f1d.png)
 ![web-extension](https://user-images.githubusercontent.com/50859092/79023509-1f654080-7b9e-11ea-9e96-7ccbd590db11.png)
+
+## Android App
 <div style="display:flex;">
 <img src="Android/screenshots/Screenshot_1587113720.png" width="150">
 <img src="Android/screenshots/Screenshot_1587113698.png" width="150">
 <img src="Android/screenshots/vlcsnap-2020-04-22-11h47m48s579%20(2).png" width="150">
 </div>
 
+## Cli-Model
 ![cli-mode1](https://user-images.githubusercontent.com/50859092/79023961-33f60880-7b9f-11ea-949a-34c43952cd98.jpeg)
 ![cli-mode2](https://user-images.githubusercontent.com/50859092/79023967-39535300-7b9f-11ea-8504-27ebccee18ed.jpeg)
 ![cli-mode3](https://user-images.githubusercontent.com/50859092/79023973-3d7f7080-7b9f-11ea-8995-7310e60dcd21.jpeg)
 ![cli-mode4](https://user-images.githubusercontent.com/50859092/79023980-42442480-7b9f-11ea-8f0d-4177b8475c57.jpeg)
 ![cli-mode5](https://user-images.githubusercontent.com/50859092/79023989-4708d880-7b9f-11ea-8fa8-5fa037f35658.jpeg)
 ![cli-mode6](https://user-images.githubusercontent.com/50859092/79023995-4c662300-7b9f-11ea-9016-4d6086cfe7c9.jpeg)
+
+## Admin Side
 ![admin-side1](https://user-images.githubusercontent.com/50859092/79023631-66533600-7b9e-11ea-969e-d4dd05641997.png)
 ![admin-side2](https://user-images.githubusercontent.com/50859092/79023639-6b17ea00-7b9e-11ea-9965-ec47b924b239.png)
 ![admin-side3](https://user-images.githubusercontent.com/50859092/79023645-6fdc9e00-7b9e-11ea-8cd4-1c2b6d2c3232.png)
