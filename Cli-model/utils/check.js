@@ -20,7 +20,7 @@ const cliProgress = require('cli-progress');
 
 module.exports = async () => {
     console.log(
-        chalk.yellow(
+        chalk.bold.yellow(
             figlet.textSync('Fake News Detection', {
                 horizontalLayout: 'default',
             })
