@@ -40,7 +40,7 @@ corona check
 #and result will be shown
 ```
 
-### All Countries
+### Get All Countries stats 
 
 ```sh
 # Display data for all countries.
@@ -52,5 +52,90 @@ corona --xcolor
 # Alias: Display data for all countries in single color.
 corona -x
 ```
+
+### Get Single Country stats
+
+```sh
+# Display data for given country.
+corona <countryName>
+
+# Display data for given country i.e. India.
+corona india
+
+# Display data for given country i.e. USA.
+corona usa
+```
+
+### Get States Data
+
+```sh
+# Display data for all the states.
+corona states
+
+# Display states data sorted by active cases.
+corona states --sort active
+
+# Display states data sorted by Cases today.
+corona states -s cases-today
+```
+
+### Sort Data
+
+```sh
+# Sort data by type
+corona --sort country
+corona --s cases
+
+# All sorting parameters.
+corona -s country
+corona -s cases
+corona -s cases-today
+corona -s deaths
+corona -s deaths-today
+corona -s recovered
+corona -s active
+corona -s critical
+corona -s per-million
+
+# Reverse sort data
+corona --sort active --reverse
+corona -s active -r
+```
+
+### Charts: Regular & Logarithmic
+
+```sh
+# Print a country line chart.
+corona usa --chart
+corona usa --c
+
+# Print a country line chart with logarithmic data.
+corona china --chart --log
+corona china -c -g
+```
+
+### Limit the output
+
+````sh
+# Print a limited number of entries to the output.
+corona --limit 10
+corona -l 10
+
+# Print a bare bones table with no info.
+corona --minimal
+corona -m
+````
+
+#### CLI Help
+
+```sh
+# Display the help.
+corona help
+corona --help
+```
+
+
+
+
 
 
