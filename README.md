@@ -20,14 +20,28 @@ Fake news detection for social good and creating awareness
 </div>
 
 ## Cli-Model
+
+#### Check the fakeness of any news content
 ![cli-model1](https://user-images.githubusercontent.com/50859092/80065437-bc898700-8557-11ea-8cb3-46f7f64f513c.png)
+
+#### Do's and Don'ts
 ![cli-model2](https://user-images.githubusercontent.com/50859092/80065494-daef8280-8557-11ea-9a9a-31a5f342ce0f.png)
-![cli-model3](https://user-images.githubusercontent.com/50859092/79023961-33f60880-7b9f-11ea-949a-34c43952cd98.jpeg)
-![cli-model4](https://user-images.githubusercontent.com/50859092/79023967-39535300-7b9f-11ea-8504-27ebccee18ed.jpeg)
-![cli-model5](https://user-images.githubusercontent.com/50859092/79023973-3d7f7080-7b9f-11ea-8995-7310e60dcd21.jpeg)
-![cli-model6](https://user-images.githubusercontent.com/50859092/79023980-42442480-7b9f-11ea-8f0d-4177b8475c57.jpeg)
-![cli-model7](https://user-images.githubusercontent.com/50859092/79023989-4708d880-7b9f-11ea-8fa8-5fa037f35658.jpeg)
-![cli-model8](https://user-images.githubusercontent.com/50859092/79023995-4c662300-7b9f-11ea-9016-4d6086cfe7c9.jpeg)
+
+#### Get All Countries stats 
+![world-wide](https://user-images.githubusercontent.com/50859092/80066278-4423c580-8559-11ea-98b5-883972f400de.png)
+
+#### sort data on various parameters
+![sorted-by-recoverd](https://user-images.githubusercontent.com/50859092/80066623-e643ad80-8559-11ea-93b3-fc2538600ace.png)
+
+#### Get Single Country stats
+![country-wise](https://user-images.githubusercontent.com/50859092/80066178-1e96bc00-8559-11ea-868f-0d7312e33a39.png)
+
+#### Get States Data
+![states-wise](https://user-images.githubusercontent.com/50859092/80066338-5e5da380-8559-11ea-9bbe-4ad130631c11.png)
+
+#### Chart
+![india-chart](https://user-images.githubusercontent.com/50859092/80066441-91a03280-8559-11ea-9159-84c353fa428f.png)
+
 
 ## Admin Side
 ![admin-side1](https://user-images.githubusercontent.com/50859092/79023631-66533600-7b9e-11ea-969e-d4dd05641997.png)
