@@ -20,12 +20,14 @@ Fake news detection for social good and creating awareness
 </div>
 
 ## Cli-Model
-![cli-mode1](https://user-images.githubusercontent.com/50859092/79023961-33f60880-7b9f-11ea-949a-34c43952cd98.jpeg)
-![cli-mode2](https://user-images.githubusercontent.com/50859092/79023967-39535300-7b9f-11ea-8504-27ebccee18ed.jpeg)
-![cli-mode3](https://user-images.githubusercontent.com/50859092/79023973-3d7f7080-7b9f-11ea-8995-7310e60dcd21.jpeg)
-![cli-mode4](https://user-images.githubusercontent.com/50859092/79023980-42442480-7b9f-11ea-8f0d-4177b8475c57.jpeg)
-![cli-mode5](https://user-images.githubusercontent.com/50859092/79023989-4708d880-7b9f-11ea-8fa8-5fa037f35658.jpeg)
-![cli-mode6](https://user-images.githubusercontent.com/50859092/79023995-4c662300-7b9f-11ea-9016-4d6086cfe7c9.jpeg)
+![cli-model1](https://user-images.githubusercontent.com/50859092/80065437-bc898700-8557-11ea-8cb3-46f7f64f513c.png)
+![cli-model2](https://user-images.githubusercontent.com/50859092/80065494-daef8280-8557-11ea-9a9a-31a5f342ce0f.png)
+![cli-model3](https://user-images.githubusercontent.com/50859092/79023961-33f60880-7b9f-11ea-949a-34c43952cd98.jpeg)
+![cli-model4](https://user-images.githubusercontent.com/50859092/79023967-39535300-7b9f-11ea-8504-27ebccee18ed.jpeg)
+![cli-model5](https://user-images.githubusercontent.com/50859092/79023973-3d7f7080-7b9f-11ea-8995-7310e60dcd21.jpeg)
+![cli-model6](https://user-images.githubusercontent.com/50859092/79023980-42442480-7b9f-11ea-8f0d-4177b8475c57.jpeg)
+![cli-model7](https://user-images.githubusercontent.com/50859092/79023989-4708d880-7b9f-11ea-8fa8-5fa037f35658.jpeg)
+![cli-model8](https://user-images.githubusercontent.com/50859092/79023995-4c662300-7b9f-11ea-9016-4d6086cfe7c9.jpeg)
 
 ## Admin Side
 ![admin-side1](https://user-images.githubusercontent.com/50859092/79023631-66533600-7b9e-11ea-969e-d4dd05641997.png)
