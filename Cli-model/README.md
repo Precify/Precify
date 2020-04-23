@@ -1,4 +1,4 @@
-# Cli-Model
+# Precify : Cli-Model
 
 - Get the information about dos and don'ts related to Coronavirus
 - Check the fakeness of any news content
